@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BlogPatchInfo</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on BlogPatchInfo</description>
+    <generator>Hugo</generator>
+    <language>nl</language>
+    <lastBuildDate>Sat, 18 Apr 2026 17:57:51 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redsun Windows Defender Zeroday</title>
+      <link>http://localhost:1313/posts/redsun-windows-defender-zeroday/</link>
+      <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
+      <guid>http://localhost:1313/posts/redsun-windows-defender-zeroday/</guid>
+      <description>Analyse van de RedSun zero-day in Windows Defender en de impact op beveiliging</description>
+    </item>
+    <item>
+      <title>Projecten</title>
+      <link>http://localhost:1313/projecten/</link>
+      <pubDate>Sat, 18 Apr 2026 14:40:14 +0000</pubDate>
+      <guid>http://localhost:1313/projecten/</guid>
+      <description>&lt;h2 id=&#34;actieve-projecten&#34;&gt;Actieve projecten&lt;/h2&gt;
+&lt;h3 id=&#34;-homelab&#34;&gt;🖥️ Homelab&lt;/h3&gt;
+&lt;p&gt;Eigen lab omgeving voor het testen van Windows security
+configuraties en tools.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Stack:&lt;/strong&gt; Proxmox, Windows Server, Ubuntu&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-security-blog&#34;&gt;📝 Security Blog&lt;/h3&gt;
+&lt;p&gt;Deze blog! Opgezet om kennis te delen over Windows
+security en Patch Tuesday analyses en nog veel meer.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; In ontwikkeling&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-patch-tuesday-tracking&#34;&gt;🔍 Patch Tuesday Tracking&lt;/h3&gt;
+&lt;p&gt;Maandelijkse analyse van Microsoft security updates.
+Bijhouden van kritieke CVE&amp;rsquo;s en impact beoordeling.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Frequentie:&lt;/strong&gt; Maandelijks&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;op-de-planning&#34;&gt;Op de planning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Microsoft Endpoint Configuration Manager (MECM)&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Rdp Client Update April 2026</title>
+      <link>http://localhost:1313/posts/rdp-update-april-2026/</link>
+      <pubDate>Sat, 18 Apr 2026 13:34:14 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rdp-update-april-2026/</guid>
+      <description>Analyse van de nieuwe RDP client update</description>
+    </item>
+    <item>
+      <title>CV</title>
+      <link>http://localhost:1313/cv/</link>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cv/</guid>
+      <description>&lt;style&gt;
+.cv { background: #0a0e1a; border-radius: 12px; border: 0.5px solid #1e3a5f; overflow: hidden; font-family: &#39;Courier New&#39;, monospace; }
+.cv-top { padding: 2rem; border-bottom: 0.5px solid #1e3a5f; display: flex; align-items: center; gap: 2rem; }
+.avatar { width: 90px; height: 90px; border-radius: 50%; background: #0d1f0d; border: 1.5px solid #00ff41; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
+.avatar-inner { font-size: 28px; font-weight: 700; color: #00ff41; }
+.avatar-scan { position: absolute; top: -100%; left: 0; width: 100%; height: 3px; background: rgba(0,255,65,0.4); animation: scan 2.5s linear infinite; }
+@keyframes scan { to { top: 110%; } }
+.cv-handle { font-size: 22px; font-weight: 700; color: #e6edf3; letter-spacing: 1px; }
+.cv-handle span { color: #00ff41; }
+.cv-role { font-size: 13px; color: #6e7681; margin-top: 4px; letter-spacing: 2px; text-transform: uppercase; }
+.cv-status { margin-top: 12px; display: flex; align-items: center; gap: 8px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #00ff41; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.status-text { font-size: 12px; color: #00ff41; }
+.cv-body { padding: 1.5rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.section-title { font-size: 11px; color: #00ff41; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 0.5px solid #1e3a5f; }
+.stat-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 0.5px solid #111827; }
+.stat-row:last-child { border-bottom: none; }
+.stat-label { font-size: 12px; color: #6e7681; }
+.stat-val { font-size: 12px; color: #e6edf3; font-weight: 500; }
+.skill-item { margin-bottom: 10px; }
+.skill-name { font-size: 12px; color: #e6edf3; margin-bottom: 4px; display: flex; justify-content: space-between; }
+.skill-level { font-size: 11px; color: #6e7681; }
+.skill-bar { height: 3px; background: #1e3a5f; border-radius: 2px; }
+.skill-fill { height: 100%; border-radius: 2px; background: #00ff41; }
+.tag { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 3px; background: #0d1f0d; color: #00ff41; border: 0.5px solid #1e3a5f; margin: 3px 3px 0 0; }
+.cv-footer { padding: 1rem 2rem; border-top: 0.5px solid #1e3a5f; display: flex; justify-content: space-between; }
+.footer-prompt { font-size: 12px; color: #6e7681; }
+.footer-prompt span { color: #00ff41; }
+&lt;/style&gt;
+&lt;div class=&#34;cv&#34;&gt;
+  &lt;div class=&#34;cv-top&#34;&gt;
+    &lt;div class=&#34;avatar&#34;&gt;
+      &lt;div class=&#34;avatar-inner&#34;&gt;&amp;gt;_&lt;/div&gt;
+      &lt;div class=&#34;avatar-scan&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;cv-identity&#34;&gt;
+      &lt;div class=&#34;cv-handle&#34;&gt;&lt;span&gt;~&lt;/span&gt;/Wingineer&lt;/div&gt;
+      &lt;div class=&#34;cv-role&#34;&gt;Windows Security Engineer &amp; CSIRT Analyst&lt;/div&gt;
+      &lt;div class=&#34;cv-status&#34;&gt;
+        &lt;div class=&#34;status-dot&#34;&gt;&lt;/div&gt;
+        &lt;div class=&#34;status-text&#34;&gt;Beschikbaar voor consultancy&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&#34;cv-body&#34;&gt;
+    &lt;div&gt;
+      &lt;div class=&#34;section-title&#34;&gt;// ervaring&lt;/div&gt;
+      &lt;div class=&#34;stat-row&#34;&gt;&lt;span class=&#34;stat-label&#34;&gt;Windows Engineering&lt;/span&gt;&lt;span class=&#34;stat-val&#34;&gt;5+ jaar&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&#34;stat-row&#34;&gt;&lt;span class=&#34;stat-label&#34;&gt;CSIRT werkzaamheden&lt;/span&gt;&lt;span class=&#34;stat-val&#34;&gt;3+ jaar&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&#34;stat-row&#34;&gt;&lt;span class=&#34;stat-label&#34;&gt;Incident Response&lt;/span&gt;&lt;span class=&#34;stat-val&#34;&gt;3+ jaar&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&#34;stat-row&#34;&gt;&lt;span class=&#34;stat-label&#34;&gt;Threat Hunting&lt;/span&gt;&lt;span class=&#34;stat-val&#34;&gt;2+ jaar&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
+  &amp;lt;div class=&amp;quot;section-title&amp;quot;&amp;gt;// certificeringen&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;stat-row&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;stat-label&amp;quot;&amp;gt;Microsoft SC-200&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;stat-val&amp;quot; style=&amp;quot;color:#00ff41&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;stat-row&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;stat-label&amp;quot;&amp;gt;AZ-500&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;stat-val&amp;quot; style=&amp;quot;color:#00ff41&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;stat-row&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;stat-label&amp;quot;&amp;gt;CompTIA Security+&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;stat-val&amp;quot; style=&amp;quot;color:#00ff41&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;div&amp;gt;
+  &amp;lt;div class=&amp;quot;section-title&amp;quot;&amp;gt;// tools &amp;amp; technieken&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;skill-item&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-name&amp;quot;&amp;gt;&amp;lt;span&amp;gt;Microsoft Sentinel&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;skill-level&amp;quot;&amp;gt;Expert&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;skill-bar&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-fill&amp;quot; style=&amp;quot;width:90%&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;skill-item&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-name&amp;quot;&amp;gt;&amp;lt;span&amp;gt;Defender for Endpoint&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;skill-level&amp;quot;&amp;gt;Expert&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;skill-bar&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-fill&amp;quot; style=&amp;quot;width:90%&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;skill-item&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-name&amp;quot;&amp;gt;&amp;lt;span&amp;gt;Sysinternals Suite&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;skill-level&amp;quot;&amp;gt;Gevorderd&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;skill-bar&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-fill&amp;quot; style=&amp;quot;width:75%&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;skill-item&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-name&amp;quot;&amp;gt;&amp;lt;span&amp;gt;KQL / SIEM queries&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;skill-level&amp;quot;&amp;gt;Gevorderd&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;skill-bar&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;skill-fill&amp;quot; style=&amp;quot;width:70%&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;div&amp;gt;
+  &amp;lt;div class=&amp;quot;section-title&amp;quot;&amp;gt;// focus gebieden&amp;lt;/div&amp;gt;
+  &amp;lt;div&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;Patch Tuesday&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;CVE analyse&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;Active Directory&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;Incident Response&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;OPSEC&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;Aotomation&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;Windows Hardening&amp;lt;/span&amp;gt;
+    &amp;lt;span class=&amp;quot;tag&amp;quot;&amp;gt;Malware analyse&amp;lt;/span&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+  &lt;div class=&#34;cv-footer&#34;&gt;
+    &lt;div class=&#34;footer-prompt&#34;&gt;&lt;span&gt;root@wingineer&lt;/span&gt;:~$ whoami&lt;/div&gt;
+    &lt;div class=&#34;footer-prompt&#34; style=&#34;color:#6e7681; font-size:11px;&#34;&gt;Identiteit: [REDACTED]&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Over mij</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Welkom op mijn blog. Ik ben een Windows engineer en CSIRT
+analist uit Nederland met passie voor security.&lt;/p&gt;
+&lt;p&gt;Hier deel ik praktische kennis over Windows security en
+maandelijkse Patch Tuesday analyses en nog veel meer zodat jij en ik op de hoogte blijven van de laatste ontwikkelingen.&lt;/p&gt;
+&lt;p&gt;Waarom anoniem? In de security wereld is dat een bewuste
+keuze mijn werk spreekt voor zich.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

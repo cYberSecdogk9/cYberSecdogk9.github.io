@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Rdp Client Update April 2026 | BlogPatchInfo</title>
+<meta name="keywords" content="rdp, patch, microsoft">
+<meta name="description" content="Analyse van de nieuwe RDP client update">
+<meta name="author" content="Wingineer">
+<link rel="canonical" href="http://localhost:1313/posts/rdp-update-april-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e9a1d86f7e5984e6df97d39bd2121cae29b27ffae2a3a8e82f880914539ad52f.css" integrity="sha256-6aHYb35ZhObfl9Ob0hIcrimyf/rio6joL4gJFFOa1S8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/rdp-update-april-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><canvas id="matrix" style="position:fixed;top:0;left:0;z-index:-1;opacity:0.15;"></canvas>
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+const chars = '01';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+    ctx.fillStyle = 'rgba(10, 14, 26, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#00ff41';
+    ctx.font = fontSize + 'px monospace';
+
+    drops.forEach((y, i) => {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * fontSize, y * fontSize);
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    });
+}
+
+setInterval(draw, 50);
+</script>
+
+<script src="/js/typewriter.js" defer></script>
+
+
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="BlogPatchInfo (Alt + H)">BlogPatchInfo</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="Over mij">
+                    <span>Over mij</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/cv/" title="CV">
+                    <span>CV</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projecten/" title="Projecten">
+                    <span>Projecten</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Rdp Client Update April 2026
+    </h1>
+    <div class="post-meta"><span title='2026-04-18 13:34:14 +0000 UTC'>April 18, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>Wingineer</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h1 id="microsoft-versterkt-beveiliging-van-rdp-bestanden-wat-je-moet-weten">Microsoft versterkt beveiliging van RDP-bestanden: Wat je moet weten<a hidden class="anchor" aria-hidden="true" href="#microsoft-versterkt-beveiliging-van-rdp-bestanden-wat-je-moet-weten">#</a></h1>
+<p><em>Gepubliceerd: april 2026 | Categorie: Windows Security, Patch Tuesday</em></p>
+<hr>
+<h2 id="inleiding">Inleiding<a hidden class="anchor" aria-hidden="true" href="#inleiding">#</a></h2>
+<p>Als onderdeel van de <strong>April 2026 Patch Tuesday</strong> heeft Microsoft een significante beveiligingsverbetering doorgevoerd voor het Remote Desktop Protocol (RDP). De update richt zich op een aanvalsvector die de afgelopen jaren steeds vaker wordt misbruikt: kwaadaardige <code>.rdp</code>-bestanden verspreid via phishing-e-mails.</p>
+<p>De wijziging is gekoppeld aan <strong>CVE-2026-26151</strong>, geclassificeerd als een <em>Remote Desktop Spoofing Vulnerability</em>.</p>
+<hr>
+<h2 id="betrokken-updates">Betrokken updates<a hidden class="anchor" aria-hidden="true" href="#betrokken-updates">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Besturingssysteem</th>
+          <th>KB-nummer</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Windows 11 (25H2 / 24H2)</td>
+          <td>KB5083769</td>
+      </tr>
+      <tr>
+          <td>Windows 11 (ouder)</td>
+          <td>KB5082052</td>
+      </tr>
+      <tr>
+          <td>Windows 10</td>
+          <td>KB5082200</td>
+      </tr>
+      <tr>
+          <td>Windows Server 2022</td>
+          <td>KB5082142</td>
+      </tr>
+      <tr>
+          <td>Windows Server 2019 / 2016 / 2012</td>
+          <td>Vergelijkbare cumulatieve updates</td>
+      </tr>
+  </tbody>
+</table>
+<p>De update is van toepassing op <strong>alle ondersteunde versies van Windows</strong> die beveiligingsupdates ontvangen in april 2026.</p>
+<hr>
+<h2 id="wat-is-het-probleem">Wat is het probleem?<a hidden class="anchor" aria-hidden="true" href="#wat-is-het-probleem">#</a></h2>
+<p>Een <code>.rdp</code>-bestand is in essentie een tekstbestand dat de Remote Desktop Connection-client (<code>mstsc.exe</code>) instrueert hoe verbinding moet worden gemaakt met een externe computer. Naast de verbindingsinstellingen kan zo&rsquo;n bestand ook lokale resources — zoals schijven, klembord, camera&rsquo;s en smartcards — doorsturen naar de externe machine.</p>
+<p><strong>Dit maakt RDP-bestanden gevaarlijk in de verkeerde handen.</strong> Aanvallers kunnen een RDP-bestand e-mailen aan slachtoffers. Zodra het slachtoffer dubbelklikt, maakt Windows automatisch verbinding met een server van de aanvaller — en deelt lokale resources.</p>
+<h3 id="bekende-misbruikgevallen">Bekende misbruikgevallen<a hidden class="anchor" aria-hidden="true" href="#bekende-misbruikgevallen">#</a></h3>
+<ul>
+<li><strong>APT29</strong> (Russische staatshackers, ook bekend als Cozy Bear) heeft RDP-bestanden ingezet in gerichte phishing-campagnes om data en credentials te stelen.</li>
+<li><code>.rdp</code>-bestanden omzeilen traditionele beveiligingsfilters omdat het geen uitvoerbare bestanden zijn (geen <code>.exe</code> of <code>.dll</code>), maar configuratiebestanden.</li>
+</ul>
+<hr>
+<h2 id="wat-verandert-er-met-de-update">Wat verandert er met de update?<a hidden class="anchor" aria-hidden="true" href="#wat-verandert-er-met-de-update">#</a></h2>
+<h3 id="1-eerste-keer-waarschuwingsdialoog">1. Eerste-keer waarschuwingsdialoog<a hidden class="anchor" aria-hidden="true" href="#1-eerste-keer-waarschuwingsdialoog">#</a></h3>
+<p>De <strong>eerste keer</strong> dat een gebruiker een <code>.rdp</code>-bestand opent na het installeren van de update, verschijnt een informatief dialoogvenster. Dit legt uit wat RDP-bestanden zijn, welke risico&rsquo;s ze meebrengen, en vraagt de gebruiker expliciet toestemming. Dit dialoogvenster verschijnt daarna niet meer.</p>
+<h3 id="2-beveiligingsdialoog-bij-elke-verbinding">2. Beveiligingsdialoog bij elke verbinding<a hidden class="anchor" aria-hidden="true" href="#2-beveiligingsdialoog-bij-elke-verbinding">#</a></h3>
+<p><strong>Bij elke opening van een RDP-bestand</strong> verschijnt voortaan een beveiligingsdialoog voordat er ook maar een verbinding wordt opgezet. Dit dialoogvenster toont:</p>
+<ul>
+<li>Het adres van de externe computer</li>
+<li>Een lijst van alle <strong>redirections</strong> (resource-doorstuurverzoeken) die het bestand aanvraagt</li>
+<li>Per redirection een <strong>uitgeschakeld selectievakje</strong> — de gebruiker moet elke doorstuur <strong>actief inschakelen</strong></li>
+</ul>
+<blockquote>
+<p><strong>Alle redirections staan standaard UIT.</strong> Dit is de belangrijkste beveiligingswijziging.</p></blockquote>
+<h3 id="3-onderscheid-tussen-ondertekende-en-niet-ondertekende-bestanden">3. Onderscheid tussen ondertekende en niet-ondertekende bestanden<a hidden class="anchor" aria-hidden="true" href="#3-onderscheid-tussen-ondertekende-en-niet-ondertekende-bestanden">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Type bestand</th>
+          <th>Dialoogvenster</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Niet digitaal ondertekend</strong></td>
+          <td>Banner: <em>&ldquo;Caution: Unknown remote connection&rdquo;</em>, Publisher: &ldquo;Unknown publisher&rdquo;</td>
+      </tr>
+      <tr>
+          <td><strong>Digitaal ondertekend</strong></td>
+          <td>Banner: <em>&ldquo;Verify the publisher of this remote connection&rdquo;</em>, naam van publisher zichtbaar</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Belangrijk:</strong> Een digitale handtekening bewijst wie het bestand heeft gemaakt, maar <strong>niet</strong> dat het bestand veilig is. Aanvallers kunnen bestanden ondertekenen met namen die sterk lijken op legitieme organisaties.</p>
+<h3 id="4-mark-of-the-web-controle">4. Mark of the Web-controle<a hidden class="anchor" aria-hidden="true" href="#4-mark-of-the-web-controle">#</a></h3>
+<p>De Remote Desktop-client controleert nu het <strong>Mark of the Web</strong> (MotW) attribuut — metadata die Windows toevoegt aan bestanden die van het internet komen of via e-mail zijn ontvangen. Wanneer dit attribuut aanwezig is, worden aanvullende beveiligingscontroles geactiveerd.</p>
+<hr>
+<h2 id="overzicht-van-redirections-en-risicos">Overzicht van redirections en risico&rsquo;s<a hidden class="anchor" aria-hidden="true" href="#overzicht-van-redirections-en-risicos">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Redirection</th>
+          <th>Wat het doet</th>
+          <th>Risico</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Schijven</strong></td>
+          <td>Lokale schijven toegankelijk voor de remote computer</td>
+          <td>Bestanden stelen, malware planten, networkshares bereiken</td>
+      </tr>
+      <tr>
+          <td><strong>Klembord</strong></td>
+          <td>Kopieerpasta-inhoud gedeeld</td>
+          <td>Wachtwoorden en gevoelige tekst uitlezen</td>
+      </tr>
+      <tr>
+          <td><strong>Smartcard / Windows Hello</strong></td>
+          <td>Authenticatiecredentials doorgestuurd</td>
+          <td>Impersonatie van de gebruiker</td>
+      </tr>
+      <tr>
+          <td><strong>WebAuthn / FIDO2</strong></td>
+          <td>Passkeys en beveiligingssleutels doorgestuurd</td>
+          <td>Phishing via authenticatieomleiding</td>
+      </tr>
+      <tr>
+          <td><strong>Microfoon</strong></td>
+          <td>Audio opgenomen door remote systeem</td>
+          <td>Afluisteren van gesprekken</td>
+      </tr>
+      <tr>
+          <td><strong>Camera</strong></td>
+          <td>Video opgenomen door remote systeem</td>
+          <td>Visuele surveillance</td>
+      </tr>
+      <tr>
+          <td><strong>Locatie</strong></td>
+          <td>Fysieke locatie gedeeld</td>
+          <td>Locatiebepaling van gevoelig personeel</td>
+      </tr>
+      <tr>
+          <td><strong>Printers</strong></td>
+          <td>Lokale printers beschikbaar</td>
+          <td>Ongewenste printjobs</td>
+      </tr>
+      <tr>
+          <td><strong>Poorten (COM/LPT)</strong></td>
+          <td>Seriële/parallelle poorten gedeeld</td>
+          <td>Toegang tot verbonden hardware</td>
+      </tr>
+      <tr>
+          <td><strong>RemoteFX USB</strong></td>
+          <td>Diepgaande USB-toegang</td>
+          <td>Toegang tot authenticatietokens en opslag</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="beheerders-wat-moet-je-weten">Beheerders: wat moet je weten?<a hidden class="anchor" aria-hidden="true" href="#beheerders-wat-moet-je-weten">#</a></h2>
+<h3 id="tijdelijk-uitschakelen-niet-aanbevolen">Tijdelijk uitschakelen (niet aanbevolen)<a hidden class="anchor" aria-hidden="true" href="#tijdelijk-uitschakelen-niet-aanbevolen">#</a></h3>
+<p>Beheerders kunnen de nieuwe dialogen tijdelijk uitschakelen via de registry:</p>
+<pre tabindex="0"><code>HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\Client
+Waarde: RedirectionWarningDialogVersion = 1 (REG_DWORD)
+</code></pre><p>Om ook de eerste-keer dialoog te onderdrukken per gebruiker:</p>
+<pre tabindex="0"><code>HKCU\Software\Microsoft\Terminal Server Client
+Waarde: RdpLaunchConsentAccepted = 1 (REG_DWORD)
+</code></pre><blockquote>
+<p><strong>Microsoft waarschuwt expliciet</strong> dat toekomstige updates deze rollback-opties kunnen verwijderen. Het wordt sterk afgeraden deze bescherming uit te schakelen.</p></blockquote>
+<h3 id="aanbevolen-acties-voor-organisaties">Aanbevolen acties voor organisaties<a hidden class="anchor" aria-hidden="true" href="#aanbevolen-acties-voor-organisaties">#</a></h3>
+<ol>
+<li><strong>Test de update</strong> in een acceptatieomgeving vóór uitrol, met name als <code>.rdp</code>-bestanden deel uitmaken van werkprocessen.</li>
+<li><strong>Onderteken interne RDP-bestanden</strong> digitaal, zodat gebruikers de publisher kunnen verifiëren.</li>
+<li><strong>Communiceer met eindgebruikers</strong> over de nieuwe dialogen om verwarring en onnodige helpdeskoproepen te voorkomen.</li>
+<li><strong>Controleer Group Policy</strong> en overweeg vertrouwde publishers centraal te configureren via GPO.</li>
+</ol>
+<hr>
+<h2 id="historische-context">Historische context<a hidden class="anchor" aria-hidden="true" href="#historische-context">#</a></h2>
+<p>Microsoft heeft RDP-beveiliging in het verleden voornamelijk op netwerkniveau aangepakt: via <strong>Network Level Authentication (NLA)</strong> en <strong>Restricted Admin Mode</strong>. De April 2026-update is de <strong>eerste client-side interventie op bestandsuitvoeringsniveau</strong>. Dit erkent dat sociale manipulatie (social engineering) niet kan worden tegengehouden door netwerkbeveiligingsmaatregelen alleen.</p>
+<hr>
+<h2 id="conclusie">Conclusie<a hidden class="anchor" aria-hidden="true" href="#conclusie">#</a></h2>
+<p>De RDP-beveiligingsupdate van april 2026 is een welkome en pragmatische verbetering. Door alle resource-doorstuurverzoeken standaard uit te zetten en gebruikers te informeren vóórdat er verbinding wordt gemaakt, pakt Microsoft de menselijke factor aan in RDP-aanvallen. De wijziging vereist enige aanpassing in organisaties die veel met <code>.rdp</code>-bestanden werken, maar de beveiligingswinst is aanzienlijk.</p>
+<p><strong>Voor eindgebruikers geldt als vuistregel:</strong> open nooit een <code>.rdp</code>-bestand dat je niet verwachtte, en schakel alleen de doorstuurmogelijkheden in die je daadwerkelijk nodig hebt.</p>
+<hr>
+<p><em>Bronnen: Microsoft Security Response Center (CVE-2026-26151), Microsoft Learn – Understanding security warnings when opening Remote Desktop files, BleepingComputer, Neowin, Thurrott.com</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/rdp/">Rdp</a></li>
+      <li><a href="http://localhost:1313/tags/patch/">Patch</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft/">Microsoft</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/redsun-windows-defender-zeroday/">
+    <span class="title">« Prev</span>
+    <span>Redsun Windows Defender Zeroday</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
