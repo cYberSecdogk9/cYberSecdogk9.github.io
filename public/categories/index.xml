@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on BlogPatchInfo</title>
-    <link>http://localhost:45067/categories/</link>
+    <link>http://localhost:33149/categories/</link>
     <description>Recent content in Categories on BlogPatchInfo</description>
     <generator>Hugo</generator>
     <language>nl</language>
     <lastBuildDate>Fri, 01 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:45067/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:33149/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cybersecurity</title>
-      <link>http://localhost:45067/categories/cybersecurity/</link>
+      <link>http://localhost:33149/categories/cybersecurity/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:45067/categories/cybersecurity/</guid>
+      <guid>http://localhost:33149/categories/cybersecurity/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>http://localhost:45067/categories/security/</link>
+      <link>http://localhost:33149/categories/security/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:45067/categories/security/</guid>
+      <guid>http://localhost:33149/categories/security/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows</title>
-      <link>http://localhost:45067/categories/windows/</link>
+      <link>http://localhost:33149/categories/windows/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:45067/categories/windows/</guid>
+      <guid>http://localhost:33149/categories/windows/</guid>
       <description></description>
     </item>
   </channel>
