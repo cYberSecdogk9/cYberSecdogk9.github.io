@@ -128,3 +128,13 @@ blockquote {
 blockquote p {
     color: #8b949e !important;
 }
+
+li {
+    position: relative;
+    z-index: 2;
+    color: #e6edf3 !important;
+}
+
+.post-content a {
+    color: #58a6ff !important;
+}
