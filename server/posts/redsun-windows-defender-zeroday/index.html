@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Redsun Windows Defender Zeroday | BlogPatchInfo</title>
+<meta name="keywords" content="redsun, windows-defender, zero-day, microsoft, malware">
+<meta name="description" content="Analyse van de RedSun zero-day in Windows Defender en de impact op beveiliging">
+<meta name="author" content="Wingineer">
+<link rel="canonical" href="https://cYberSecdogk9.github.io/posts/redsun-windows-defender-zeroday/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d7d5ecf0f71817f3bb249bce225a4f5855d5d670d8337c44c59adc72dd352088.css" integrity="sha256-19Xs8PcYF/O7JJvOIlpPWFXV1nDYM3xExZrcct01IIg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://cYberSecdogk9.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://cYberSecdogk9.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://cYberSecdogk9.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://cYberSecdogk9.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://cYberSecdogk9.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://cYberSecdogk9.github.io/posts/redsun-windows-defender-zeroday/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><canvas id="matrix" style="position:fixed;top:0;left:0;z-index:-1;opacity:0.15;"></canvas>
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+const chars = '01';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+    ctx.fillStyle = 'rgba(10, 14, 26, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#00ff41';
+    ctx.font = fontSize + 'px monospace';
+
+    drops.forEach((y, i) => {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * fontSize, y * fontSize);
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    });
+}
+
+setInterval(draw, 50);
+</script>
+
+<script src="/js/typewriter.js" defer></script>
+
+<meta property="og:url" content="https://cYberSecdogk9.github.io/posts/redsun-windows-defender-zeroday/">
+  <meta property="og:site_name" content="BlogPatchInfo">
+  <meta property="og:title" content="Redsun Windows Defender Zeroday">
+  <meta property="og:description" content="Analyse van de RedSun zero-day in Windows Defender en de impact op beveiliging">
+  <meta property="og:locale" content="nl">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-18T17:57:51+00:00">
+    <meta property="article:modified_time" content="2026-04-18T17:57:51+00:00">
+    <meta property="article:tag" content="Redsun">
+    <meta property="article:tag" content="Windows-Defender">
+    <meta property="article:tag" content="Zero-Day">
+    <meta property="article:tag" content="Microsoft">
+    <meta property="article:tag" content="Malware">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Redsun Windows Defender Zeroday">
+  <meta name="twitter:description" content="Analyse van de RedSun zero-day in Windows Defender en de impact op beveiliging">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://cYberSecdogk9.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Redsun Windows Defender Zeroday",
+      "item": "https://cYberSecdogk9.github.io/posts/redsun-windows-defender-zeroday/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Redsun Windows Defender Zeroday",
+  "name": "Redsun Windows Defender Zeroday",
+  "description": "Analyse van de RedSun zero-day in Windows Defender en de impact op beveiliging",
+  "keywords": [
+    "redsun", "windows-defender", "zero-day", "microsoft", "malware"
+  ],
+  "articleBody": "RedSun: Hoe Windows Defender zichzelf aanvalt Gepubliceerd: april 2026 | Categorie: Windows Security, Zero-Day, Privilege Escalation\nActief misbruikt, geen patch beschikbaar — Op het moment van schrijven heeft Microsoft nog geen fix uitgebracht voor RedSun.\nAchtergrond Op 16 april 2026 publiceerde de beveiligingsonderzoeker bekend als “Chaotic Eclipse” (GitHub-alias: Nightmare-Eclipse) een proof-of-concept (PoC) exploit voor een nieuwe zero-day kwetsbaarheid in Windows Defender, gedoopt “RedSun”.\nHet is zijn tweede publieke disclosure in twee weken tijd. De eerste — BlueHammer — was een vergelijkbare Local Privilege Escalation (LPE) in Defender die werd gepatcht als onderdeel van de April 2026 Patch Tuesday (CVE-2026-33825). RedSun maakt gebruik van een volledig andere aanvalsvector en valt buiten die fix.\nDe onderzoeker stelt de disclosures expliciet te hebben gedaan als protest tegen de manier waarop Microsoft omgaat met beveiligingsonderzoekers die kwetsbaarheden melden bij het Microsoft Security Response Center (MSRC).\nWat is RedSun? RedSun is een Local Privilege Escalation (LPE) kwetsbaarheid — een aanvaller die al code kan uitvoeren op een systeem (als gewone gebruiker) kan zichzelf opwaarderen naar SYSTEM-niveau privileges. Dat is het hoogste rechtniveau in Windows.\nKernprobleem De kwetsbaarheid zit in een logicafout in de manier waarop Windows Defender omgaat met bestanden die een zogenaamde “cloud tag” hebben. Wanneer Defender zo’n bestand detecteert als kwaadaardig, probeert het de beveiliging te herstellen door het bestand terug te schrijven naar de oorspronkelijke locatie — zonder te valideren of die locatie ondertussen is omgeleid via een NTFS junction point (reparse point).\nDe onderzoeker omschrijft het als volgt in de GitHub-repository:\n“For whatever stupid and hilarious reason, the antivirus that’s supposed to protect decides that it is a good idea to just rewrite the file it found again to its original location.”\nDe root cause ligt in MpSvc.dll — de kern van de Malware Protection Engine, geladen door MsMpEng.exe — dat geen validatie uitvoert op reparse points tijdens de file remediation fase.\nDe aanvalsketen (technisch) RedSun combineert vier legitieme, gedocumenteerde Windows-functionaliteiten op een manier die samen een kritieke kwetsbaarheid vormt. Geen van de afzonderlijke componenten is zelf kwetsbaar.\n1. Cloud Files API (cldapi.dll) └─ Aanvaller registreert een nep cloud sync provider en plaatst een speciaal gecraft placeholder-bestand met cloud metadata die Defender triggert 2. Opportunistic Lock (OPLOCK) └─ Aanvaller plaatst een OPLOCK op het bestand om het herstelproces van Defender te pauzeren op het juiste moment 3. NTFS Directory Junction (reparse point) └─ Terwijl Defender gepauseerd is, vervangt de aanvaller de doelmap met een junction naar: C:\\Windows\\System32 4. Defender hervat de schrijfoperatie └─ Defender schrijft het aanvallersbestand naar wat het denkt de originele locatie te zijn — maar schrijft feitelijk naar System32 met SYSTEM-rechten Als doelbestand gebruikt de PoC TieringEngineService.exe, een legitiem Windows service binary in System32. Nadat dit is overschreven, voert de aanvaller het uit en heeft SYSTEM-niveau toegang.\nBevestiging Will Dormann, principal vulnerability analyst bij Tharros, heeft de exploit getest en bevestigd:\n“This works ~100% reliably to go from unprivileged user to SYSTEM against Windows 11 and Windows Server 2019+ with April 2026 updates, as well as Windows 10, as long as you have Windows Defender enabled. Any system that has cldapi.dll should be affected.”\nGetroffen systemen Platform Kwetsbaar Windows 10 (alle versies met Defender) Ja Windows 11 (incl. volledig gepatcht, april 2026) Ja Windows Server 2019 en later Ja Systemen zonder cldapi.dll Nee Systemen met uitgeschakelde “Cloud-Delivered Protection” Mogelijk minder kwetsbaar* *De aanval maakt gebruik van cloud file-metadata; het uitschakelen van cloud-bescherming kan de triggercondities beïnvloeden, maar biedt geen volledige mitigatie.\nVerhouding tot BlueHammer BlueHammer RedSun Onderzoeker Chaotic Eclipse Chaotic Eclipse Type LPE (Local Privilege Escalation) LPE (Local Privilege Escalation) CVE CVE-2026-33825 Geen (op dit moment) Gepatcht Ja (april 2026 Patch Tuesday) Nee Aanvalsvector Anders Cloud Files API + OPLOCK + junction PoC publiek Ja Ja (GitHub) Actief misbruik Kort na de publieke disclosure meldde beveiligingsbedrijf Huntress dat RedSun al actief wordt ingezet in echte aanvallen. Waargenomen indicatoren:\nBestanden zoals RedSun.exe en FunnyApp.exe in gebruikerstoegankelijke mappen (Downloads, Pictures) Systeemenumeratiecommando’s uitgevoerd na privilege escalatie Combinatie met BlueHammer en een tool genaamd “UnDefend” Detectie Microsoft Defender detecteert de exploit momenteel niet. Dormann stelde vast dat de PoC-executable wordt herkend door sommige antivirusprogramma’s op VirusTotal vanwege een ingebedde EICAR-teststring — maar dat bij encryptie van die string de detectie wegvalt, terwijl de werking intact blijft.\nDetectie-indicatoren voor SOC/blue team Onverwachte registratie van cloud sync providers op endpoints Gebruik van cldapi.dll gevolgd door schrijfoperaties naar C:\\Windows\\System32 Wijzigingen aan TieringEngineService.exe of andere System32-binaries NTFS reparse point / junction activiteit vanuit gebruikersprocessen Onverwacht opstarten van TieringEngineService.exe of vergelijkbare services Mitigaties (geen patch beschikbaar) Omdat Microsoft nog geen fix heeft uitgebracht, zijn de opties beperkt. Aanbevolen maatregelen:\nMonitoring: Alert op abnormale Defender-schrijfactiviteit richting C:\\Windows\\System32 Attack Surface Reduction (ASR) rules: Schakel relevante ASR-regels in om veelgebruikte aanvalspaden te beperken Least privilege: Beperk initiële toegang — RedSun vereist dat een aanvaller al code kan uitvoeren als gewone gebruiker EDR/XDR: Zorg dat endpoint detection tools reparse point-manipulaties kunnen signaleren Netwerksegmentatie: Beperk laterale beweging na een eventuele privilege escalatie Let op: Uitschakelen van Windows Defender wordt niet aanbevolen als mitigatie — dit introduceert grotere beveiligingsrisico’s dan de kwetsbaarheid zelf.\nDe bredere context: onderzoeker vs. Microsoft De timing en toon van de disclosure zijn opvallend. Chaotic Eclipse heeft BlueHammer wél eerst aan Microsoft gemeld. Nadat Microsoft die patch uitbracht (CVE-2026-33825) zonder — naar de mening van de onderzoeker — adequaat te communiceren, werd RedSun direct publiek gedisclosed, zonder voorafgaande melding bij MSRC.\nDit roept bredere vragen op over Coordinated Vulnerability Disclosure (CVD): wat gebeurt er als de relatie tussen onderzoeker en vendor verslechtert? De publieke release van een werkende exploit voor een niet-gepatcht systeem stelt miljoenen gebruikers bloot aan risico — ongeacht de motivatie van de onderzoeker.\nMicrosoft heeft op het moment van schrijven geen officiële reactie gegeven op RedSun.\nConclusie RedSun is een serieuze kwetsbaarheid. Niet omdat het op afstand uitbuiting mogelijk maakt — dat doet het niet — maar omdat het aantoont dat het vertrouwde beveiligingsmechanisme van Windows zelf als aanvalsprimitive kan worden ingezet. Een aanvaller die via phishing, een malafide download of een browserexploit initiële toegang verkrijgt, kan met RedSun vrijwel zeker SYSTEM-rechten bemachtigen op elk modern, volledig gepatcht Windows-systeem.\nDe ironie is niet te missen: de tool die je moet beschermen, wordt het aanvalswapen.\nHoud de Microsoft Security Update Guide in de gaten voor een noodpatch.\nBronnen: BleepingComputer, CSO Online, CyberInsider, CyberSecurityNews, CloudSEK, GitHub (Nightmare-Eclipse/RedSun), Huntress\nCVE-referentie (voorganger): CVE-2026-33825 (BlueHammer) | RedSun: geen CVE op moment van publicatie\n",
+  "wordCount" : "1062",
+  "inLanguage": "en",
+  "datePublished": "2026-04-18T17:57:51Z",
+  "dateModified": "2026-04-18T17:57:51Z",
+  "author":{
+    "@type": "Person",
+    "name": "Wingineer"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cYberSecdogk9.github.io/posts/redsun-windows-defender-zeroday/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BlogPatchInfo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://cYberSecdogk9.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://cYberSecdogk9.github.io/" accesskey="h" title="BlogPatchInfo (Alt + H)">BlogPatchInfo</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://cYberSecdogk9.github.io/about/" title="Over mij">
+                    <span>Over mij</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cYberSecdogk9.github.io/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cYberSecdogk9.github.io/cv/" title="CV">
+                    <span>CV</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://cYberSecdogk9.github.io/projecten/" title="Projecten">
+                    <span>Projecten</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Redsun Windows Defender Zeroday
+    </h1>
+    <div class="post-meta"><span title='2026-04-18 17:57:51 +0000 UTC'>April 18, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Wingineer</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><h1 id="redsun-hoe-windows-defender-zichzelf-aanvalt">RedSun: Hoe Windows Defender zichzelf aanvalt<a hidden class="anchor" aria-hidden="true" href="#redsun-hoe-windows-defender-zichzelf-aanvalt">#</a></h1>
+<p><em>Gepubliceerd: april 2026 | Categorie: Windows Security, Zero-Day, Privilege Escalation</em></p>
+<blockquote>
+<p><strong>Actief misbruikt, geen patch beschikbaar</strong> — Op het moment van schrijven heeft Microsoft nog geen fix uitgebracht voor RedSun.</p></blockquote>
+<hr>
+<h2 id="achtergrond">Achtergrond<a hidden class="anchor" aria-hidden="true" href="#achtergrond">#</a></h2>
+<p>Op <strong>16 april 2026</strong> publiceerde de beveiligingsonderzoeker bekend als <strong>&ldquo;Chaotic Eclipse&rdquo;</strong> (GitHub-alias: <em>Nightmare-Eclipse</em>) een proof-of-concept (PoC) exploit voor een nieuwe zero-day kwetsbaarheid in Windows Defender, gedoopt <strong>&ldquo;RedSun&rdquo;</strong>.</p>
+<p>Het is zijn tweede publieke disclosure in twee weken tijd. De eerste — <strong>BlueHammer</strong> — was een vergelijkbare Local Privilege Escalation (LPE) in Defender die werd gepatcht als onderdeel van de April 2026 Patch Tuesday (<strong>CVE-2026-33825</strong>). RedSun maakt gebruik van een volledig andere aanvalsvector en valt <strong>buiten</strong> die fix.</p>
+<p>De onderzoeker stelt de disclosures expliciet te hebben gedaan als <strong>protest tegen de manier waarop Microsoft omgaat met beveiligingsonderzoekers</strong> die kwetsbaarheden melden bij het Microsoft Security Response Center (MSRC).</p>
+<hr>
+<h2 id="wat-is-redsun">Wat is RedSun?<a hidden class="anchor" aria-hidden="true" href="#wat-is-redsun">#</a></h2>
+<p>RedSun is een <strong>Local Privilege Escalation (LPE)</strong> kwetsbaarheid — een aanvaller die al code kan uitvoeren op een systeem (als gewone gebruiker) kan zichzelf opwaarderen naar <strong>SYSTEM-niveau privileges</strong>. Dat is het hoogste rechtniveau in Windows.</p>
+<h3 id="kernprobleem">Kernprobleem<a hidden class="anchor" aria-hidden="true" href="#kernprobleem">#</a></h3>
+<p>De kwetsbaarheid zit in een <strong>logicafout</strong> in de manier waarop Windows Defender omgaat met bestanden die een zogenaamde &ldquo;cloud tag&rdquo; hebben. Wanneer Defender zo&rsquo;n bestand detecteert als kwaadaardig, probeert het de beveiliging te herstellen door het bestand terug te schrijven naar de oorspronkelijke locatie — <strong>zonder te valideren of die locatie ondertussen is omgeleid</strong> via een NTFS junction point (reparse point).</p>
+<p>De onderzoeker omschrijft het als volgt in de GitHub-repository:</p>
+<blockquote>
+<p><em>&ldquo;For whatever stupid and hilarious reason, the antivirus that&rsquo;s supposed to protect decides that it is a good idea to just rewrite the file it found again to its original location.&rdquo;</em></p></blockquote>
+<p>De root cause ligt in <strong><code>MpSvc.dll</code></strong> — de kern van de Malware Protection Engine, geladen door <code>MsMpEng.exe</code> — dat geen validatie uitvoert op reparse points tijdens de file remediation fase.</p>
+<hr>
+<h2 id="de-aanvalsketen-technisch">De aanvalsketen (technisch)<a hidden class="anchor" aria-hidden="true" href="#de-aanvalsketen-technisch">#</a></h2>
+<p>RedSun combineert vier legitieme, gedocumenteerde Windows-functionaliteiten op een manier die samen een kritieke kwetsbaarheid vormt. Geen van de afzonderlijke componenten is zelf kwetsbaar.</p>
+<pre tabindex="0"><code>1. Cloud Files API (cldapi.dll)
+   └─ Aanvaller registreert een nep cloud sync provider
+      en plaatst een speciaal gecraft placeholder-bestand
+      met cloud metadata die Defender triggert
+
+2. Opportunistic Lock (OPLOCK)
+   └─ Aanvaller plaatst een OPLOCK op het bestand
+      om het herstelproces van Defender te pauzeren
+      op het juiste moment
+
+3. NTFS Directory Junction (reparse point)
+   └─ Terwijl Defender gepauseerd is, vervangt de aanvaller
+      de doelmap met een junction naar:
+      C:\Windows\System32
+
+4. Defender hervat de schrijfoperatie
+   └─ Defender schrijft het aanvallersbestand naar wat
+      het denkt de originele locatie te zijn —
+      maar schrijft feitelijk naar System32 met SYSTEM-rechten
+</code></pre><p>Als doelbestand gebruikt de PoC <strong><code>TieringEngineService.exe</code></strong>, een legitiem Windows service binary in System32. Nadat dit is overschreven, voert de aanvaller het uit en heeft SYSTEM-niveau toegang.</p>
+<h3 id="bevestiging">Bevestiging<a hidden class="anchor" aria-hidden="true" href="#bevestiging">#</a></h3>
+<p><strong>Will Dormann</strong>, principal vulnerability analyst bij Tharros, heeft de exploit getest en bevestigd:</p>
+<blockquote>
+<p><em>&ldquo;This works ~100% reliably to go from unprivileged user to SYSTEM against Windows 11 and Windows Server 2019+ with April 2026 updates, as well as Windows 10, as long as you have Windows Defender enabled. Any system that has cldapi.dll should be affected.&rdquo;</em></p></blockquote>
+<hr>
+<h2 id="getroffen-systemen">Getroffen systemen<a hidden class="anchor" aria-hidden="true" href="#getroffen-systemen">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Platform</th>
+          <th>Kwetsbaar</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Windows 10 (alle versies met Defender)</td>
+          <td>Ja</td>
+      </tr>
+      <tr>
+          <td>Windows 11 (incl. volledig gepatcht, april 2026)</td>
+          <td>Ja</td>
+      </tr>
+      <tr>
+          <td>Windows Server 2019 en later</td>
+          <td>Ja</td>
+      </tr>
+      <tr>
+          <td>Systemen zonder <code>cldapi.dll</code></td>
+          <td>Nee</td>
+      </tr>
+      <tr>
+          <td>Systemen met uitgeschakelde &ldquo;Cloud-Delivered Protection&rdquo;</td>
+          <td>Mogelijk minder kwetsbaar*</td>
+      </tr>
+  </tbody>
+</table>
+<p><em>*De aanval maakt gebruik van cloud file-metadata; het uitschakelen van cloud-bescherming kan de triggercondities beïnvloeden, maar biedt geen volledige mitigatie.</em></p>
+<hr>
+<h2 id="verhouding-tot-bluehammer">Verhouding tot BlueHammer<a hidden class="anchor" aria-hidden="true" href="#verhouding-tot-bluehammer">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>BlueHammer</th>
+          <th>RedSun</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Onderzoeker</td>
+          <td>Chaotic Eclipse</td>
+          <td>Chaotic Eclipse</td>
+      </tr>
+      <tr>
+          <td>Type</td>
+          <td>LPE (Local Privilege Escalation)</td>
+          <td>LPE (Local Privilege Escalation)</td>
+      </tr>
+      <tr>
+          <td>CVE</td>
+          <td>CVE-2026-33825</td>
+          <td>Geen (op dit moment)</td>
+      </tr>
+      <tr>
+          <td>Gepatcht</td>
+          <td>Ja (april 2026 Patch Tuesday)</td>
+          <td>Nee</td>
+      </tr>
+      <tr>
+          <td>Aanvalsvector</td>
+          <td>Anders</td>
+          <td>Cloud Files API + OPLOCK + junction</td>
+      </tr>
+      <tr>
+          <td>PoC publiek</td>
+          <td>Ja</td>
+          <td>Ja (GitHub)</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="actief-misbruik">Actief misbruik<a hidden class="anchor" aria-hidden="true" href="#actief-misbruik">#</a></h2>
+<p>Kort na de publieke disclosure meldde beveiligingsbedrijf <strong>Huntress</strong> dat RedSun al actief wordt ingezet in echte aanvallen. Waargenomen indicatoren:</p>
+<ul>
+<li>Bestanden zoals <code>RedSun.exe</code> en <code>FunnyApp.exe</code> in gebruikerstoegankelijke mappen (<code>Downloads</code>, <code>Pictures</code>)</li>
+<li>Systeemenumeratiecommando&rsquo;s uitgevoerd na privilege escalatie</li>
+<li>Combinatie met BlueHammer en een tool genaamd &ldquo;UnDefend&rdquo;</li>
+</ul>
+<hr>
+<h2 id="detectie">Detectie<a hidden class="anchor" aria-hidden="true" href="#detectie">#</a></h2>
+<p><strong>Microsoft Defender detecteert de exploit momenteel niet.</strong> Dormann stelde vast dat de PoC-executable wordt herkend door sommige antivirusprogramma&rsquo;s op VirusTotal vanwege een ingebedde EICAR-teststring — maar dat bij encryptie van die string de detectie wegvalt, terwijl de werking intact blijft.</p>
+<h3 id="detectie-indicatoren-voor-socblue-team">Detectie-indicatoren voor SOC/blue team<a hidden class="anchor" aria-hidden="true" href="#detectie-indicatoren-voor-socblue-team">#</a></h3>
+<ul>
+<li>Onverwachte registratie van cloud sync providers op endpoints</li>
+<li>Gebruik van <code>cldapi.dll</code> gevolgd door schrijfoperaties naar <code>C:\Windows\System32</code></li>
+<li>Wijzigingen aan <code>TieringEngineService.exe</code> of andere System32-binaries</li>
+<li>NTFS reparse point / junction activiteit vanuit gebruikersprocessen</li>
+<li>Onverwacht opstarten van <code>TieringEngineService.exe</code> of vergelijkbare services</li>
+</ul>
+<hr>
+<h2 id="mitigaties-geen-patch-beschikbaar">Mitigaties (geen patch beschikbaar)<a hidden class="anchor" aria-hidden="true" href="#mitigaties-geen-patch-beschikbaar">#</a></h2>
+<p>Omdat Microsoft nog geen fix heeft uitgebracht, zijn de opties beperkt. Aanbevolen maatregelen:</p>
+<ol>
+<li><strong>Monitoring</strong>: Alert op abnormale Defender-schrijfactiviteit richting <code>C:\Windows\System32</code></li>
+<li><strong>Attack Surface Reduction (ASR) rules</strong>: Schakel relevante ASR-regels in om veelgebruikte aanvalspaden te beperken</li>
+<li><strong>Least privilege</strong>: Beperk initiële toegang — RedSun vereist dat een aanvaller al code kan uitvoeren als gewone gebruiker</li>
+<li><strong>EDR/XDR</strong>: Zorg dat endpoint detection tools reparse point-manipulaties kunnen signaleren</li>
+<li><strong>Netwerksegmentatie</strong>: Beperk laterale beweging na een eventuele privilege escalatie</li>
+</ol>
+<blockquote>
+<p><strong>Let op:</strong> Uitschakelen van Windows Defender wordt niet aanbevolen als mitigatie — dit introduceert grotere beveiligingsrisico&rsquo;s dan de kwetsbaarheid zelf.</p></blockquote>
+<hr>
+<h2 id="de-bredere-context-onderzoeker-vs-microsoft">De bredere context: onderzoeker vs. Microsoft<a hidden class="anchor" aria-hidden="true" href="#de-bredere-context-onderzoeker-vs-microsoft">#</a></h2>
+<p>De timing en toon van de disclosure zijn opvallend. Chaotic Eclipse heeft BlueHammer wél eerst aan Microsoft gemeld. Nadat Microsoft die patch uitbracht (CVE-2026-33825) zonder — naar de mening van de onderzoeker — adequaat te communiceren, werd RedSun direct publiek gedisclosed, zonder voorafgaande melding bij MSRC.</p>
+<p>Dit roept bredere vragen op over <strong>Coordinated Vulnerability Disclosure (CVD)</strong>: wat gebeurt er als de relatie tussen onderzoeker en vendor verslechtert? De publieke release van een werkende exploit voor een niet-gepatcht systeem stelt miljoenen gebruikers bloot aan risico — ongeacht de motivatie van de onderzoeker.</p>
+<p>Microsoft heeft op het moment van schrijven <strong>geen officiële reactie</strong> gegeven op RedSun.</p>
+<hr>
+<h2 id="conclusie">Conclusie<a hidden class="anchor" aria-hidden="true" href="#conclusie">#</a></h2>
+<p>RedSun is een serieuze kwetsbaarheid. Niet omdat het op afstand uitbuiting mogelijk maakt — dat doet het niet — maar omdat het aantoont dat het vertrouwde beveiligingsmechanisme van Windows zelf als aanvalsprimitive kan worden ingezet. Een aanvaller die via phishing, een malafide download of een browserexploit initiële toegang verkrijgt, kan met RedSun vrijwel zeker SYSTEM-rechten bemachtigen op elk modern, volledig gepatcht Windows-systeem.</p>
+<p>De ironie is niet te missen: <strong>de tool die je moet beschermen, wordt het aanvalswapen.</strong></p>
+<p>Houd de Microsoft Security Update Guide in de gaten voor een noodpatch.</p>
+<hr>
+<p><em>Bronnen: BleepingComputer, CSO Online, CyberInsider, CyberSecurityNews, CloudSEK, GitHub (Nightmare-Eclipse/RedSun), Huntress</em></p>
+<p><em>CVE-referentie (voorganger): CVE-2026-33825 (BlueHammer) | RedSun: geen CVE op moment van publicatie</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://cYberSecdogk9.github.io/tags/redsun/">Redsun</a></li>
+      <li><a href="https://cYberSecdogk9.github.io/tags/windows-defender/">Windows-Defender</a></li>
+      <li><a href="https://cYberSecdogk9.github.io/tags/zero-day/">Zero-Day</a></li>
+      <li><a href="https://cYberSecdogk9.github.io/tags/microsoft/">Microsoft</a></li>
+      <li><a href="https://cYberSecdogk9.github.io/tags/malware/">Malware</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://cYberSecdogk9.github.io/posts/copy-fail-cve-2026-31431/">
+    <span class="title">« Prev</span>
+    <span>&#34;Copy Fail&#34; — CVE-2026-31431: Elke lokale gebruiker krijgt root op Linux</span>
+  </a>
+  <a class="next" href="https://cYberSecdogk9.github.io/posts/rdp-update-april-2026/">
+    <span class="title">Next »</span>
+    <span>Rdp Client Update April 2026</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

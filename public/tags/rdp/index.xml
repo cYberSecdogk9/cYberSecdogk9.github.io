@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Rdp on BlogPatchInfo</title>
-    <link>http://localhost:1313/tags/rdp/</link>
+    <link>http://localhost:45067/tags/rdp/</link>
     <description>Recent content in Rdp on BlogPatchInfo</description>
     <generator>Hugo</generator>
     <language>nl</language>
     <lastBuildDate>Sat, 18 Apr 2026 13:34:14 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/rdp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:45067/tags/rdp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rdp Client Update April 2026</title>
-      <link>http://localhost:1313/posts/rdp-update-april-2026/</link>
+      <link>http://localhost:45067/posts/rdp-update-april-2026/</link>
       <pubDate>Sat, 18 Apr 2026 13:34:14 +0000</pubDate>
-      <guid>http://localhost:1313/posts/rdp-update-april-2026/</guid>
+      <guid>http://localhost:45067/posts/rdp-update-april-2026/</guid>
       <description>Analyse van de nieuwe RDP client update</description>
     </item>
   </channel>
