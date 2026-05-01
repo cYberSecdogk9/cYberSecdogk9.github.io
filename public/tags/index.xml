@@ -2,94 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on BlogPatchInfo</title>
-    <link>http://localhost:38473/tags/</link>
+    <link>http://localhost:37853/tags/</link>
     <description>Recent content in Tags on BlogPatchInfo</description>
     <generator>Hugo</generator>
     <language>nl</language>
     <lastBuildDate>Fri, 01 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:38473/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:37853/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cve</title>
-      <link>http://localhost:38473/tags/cve/</link>
+      <link>http://localhost:37853/tags/cve/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:38473/tags/cve/</guid>
+      <guid>http://localhost:37853/tags/cve/</guid>
       <description></description>
     </item>
     <item>
       <title>Kernel</title>
-      <link>http://localhost:38473/tags/kernel/</link>
+      <link>http://localhost:37853/tags/kernel/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:38473/tags/kernel/</guid>
+      <guid>http://localhost:37853/tags/kernel/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>http://localhost:38473/tags/linux/</link>
+      <link>http://localhost:37853/tags/linux/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:38473/tags/linux/</guid>
+      <guid>http://localhost:37853/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Privilege-Escalation</title>
-      <link>http://localhost:38473/tags/privilege-escalation/</link>
+      <link>http://localhost:37853/tags/privilege-escalation/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:38473/tags/privilege-escalation/</guid>
+      <guid>http://localhost:37853/tags/privilege-escalation/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>http://localhost:38473/tags/security/</link>
+      <link>http://localhost:37853/tags/security/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:38473/tags/security/</guid>
+      <guid>http://localhost:37853/tags/security/</guid>
       <description></description>
     </item>
     <item>
       <title>Malware</title>
-      <link>http://localhost:38473/tags/malware/</link>
+      <link>http://localhost:37853/tags/malware/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:38473/tags/malware/</guid>
+      <guid>http://localhost:37853/tags/malware/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft</title>
-      <link>http://localhost:38473/tags/microsoft/</link>
+      <link>http://localhost:37853/tags/microsoft/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:38473/tags/microsoft/</guid>
+      <guid>http://localhost:37853/tags/microsoft/</guid>
       <description></description>
     </item>
     <item>
       <title>Redsun</title>
-      <link>http://localhost:38473/tags/redsun/</link>
+      <link>http://localhost:37853/tags/redsun/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:38473/tags/redsun/</guid>
+      <guid>http://localhost:37853/tags/redsun/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows-Defender</title>
-      <link>http://localhost:38473/tags/windows-defender/</link>
+      <link>http://localhost:37853/tags/windows-defender/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:38473/tags/windows-defender/</guid>
+      <guid>http://localhost:37853/tags/windows-defender/</guid>
       <description></description>
     </item>
     <item>
       <title>Zero-Day</title>
-      <link>http://localhost:38473/tags/zero-day/</link>
+      <link>http://localhost:37853/tags/zero-day/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:38473/tags/zero-day/</guid>
+      <guid>http://localhost:37853/tags/zero-day/</guid>
       <description></description>
     </item>
     <item>
       <title>Patch</title>
-      <link>http://localhost:38473/tags/patch/</link>
+      <link>http://localhost:37853/tags/patch/</link>
       <pubDate>Sat, 18 Apr 2026 13:34:14 +0000</pubDate>
-      <guid>http://localhost:38473/tags/patch/</guid>
+      <guid>http://localhost:37853/tags/patch/</guid>
       <description></description>
     </item>
     <item>
       <title>Rdp</title>
-      <link>http://localhost:38473/tags/rdp/</link>
+      <link>http://localhost:37853/tags/rdp/</link>
       <pubDate>Sat, 18 Apr 2026 13:34:14 +0000</pubDate>
-      <guid>http://localhost:38473/tags/rdp/</guid>
+      <guid>http://localhost:37853/tags/rdp/</guid>
       <description></description>
     </item>
   </channel>

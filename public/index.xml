@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>BlogPatchInfo</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:37853/</link>
     <description>Recent content on BlogPatchInfo</description>
     <generator>Hugo</generator>
     <language>nl</language>
     <lastBuildDate>Fri, 01 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:37853/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>&#34;Copy Fail&#34; — CVE-2026-31431: Elke lokale gebruiker krijgt root op Linux</title>
-      <link>http://localhost:1313/posts/copy-fail-cve-2026-31431/</link>
+      <link>http://localhost:37853/posts/copy-fail-cve-2026-31431/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/copy-fail-cve-2026-31431/</guid>
+      <guid>http://localhost:37853/posts/copy-fail-cve-2026-31431/</guid>
       <description>Een kritieke kwetsbaarheid in de Linux-kernel geeft elke onbevoegde lokale gebruiker root-toegang op vrijwel alle distributies gebouwd tussen 2017 en 2026.</description>
     </item>
     <item>
       <title>Redsun Windows Defender Zeroday</title>
-      <link>http://localhost:1313/posts/redsun-windows-defender-zeroday/</link>
+      <link>http://localhost:37853/posts/redsun-windows-defender-zeroday/</link>
       <pubDate>Sat, 18 Apr 2026 17:57:51 +0000</pubDate>
-      <guid>http://localhost:1313/posts/redsun-windows-defender-zeroday/</guid>
+      <guid>http://localhost:37853/posts/redsun-windows-defender-zeroday/</guid>
       <description>Analyse van de RedSun zero-day in Windows Defender en de impact op beveiliging</description>
     </item>
     <item>
       <title>Projecten</title>
-      <link>http://localhost:1313/projecten/</link>
+      <link>http://localhost:37853/projecten/</link>
       <pubDate>Sat, 18 Apr 2026 14:40:14 +0000</pubDate>
-      <guid>http://localhost:1313/projecten/</guid>
+      <guid>http://localhost:37853/projecten/</guid>
       <description>&lt;h2 id=&#34;actieve-projecten&#34;&gt;Actieve projecten&lt;/h2&gt;
 &lt;h3 id=&#34;-homelab&#34;&gt;🖥️ Homelab&lt;/h3&gt;
 &lt;p&gt;Eigen lab omgeving voor het testen van Windows security
@@ -50,16 +50,16 @@ Bijhouden van kritieke CVE&amp;rsquo;s en impact beoordeling.&lt;/p&gt;
     </item>
     <item>
       <title>Rdp Client Update April 2026</title>
-      <link>http://localhost:1313/posts/rdp-update-april-2026/</link>
+      <link>http://localhost:37853/posts/rdp-update-april-2026/</link>
       <pubDate>Sat, 18 Apr 2026 13:34:14 +0000</pubDate>
-      <guid>http://localhost:1313/posts/rdp-update-april-2026/</guid>
+      <guid>http://localhost:37853/posts/rdp-update-april-2026/</guid>
       <description>Analyse van de nieuwe RDP client update</description>
     </item>
     <item>
       <title>CV</title>
-      <link>http://localhost:1313/cv/</link>
+      <link>http://localhost:37853/cv/</link>
       <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/cv/</guid>
+      <guid>http://localhost:37853/cv/</guid>
       <description>&lt;style&gt;
 .cv { background: #0a0e1a; border-radius: 12px; border: 0.5px solid #1e3a5f; overflow: hidden; font-family: &#39;Courier New&#39;, monospace; }
 .cv-top { padding: 2rem; border-bottom: 0.5px solid #1e3a5f; display: flex; align-items: center; gap: 2rem; }
@@ -151,9 +151,9 @@ Bijhouden van kritieke CVE&amp;rsquo;s en impact beoordeling.&lt;/p&gt;
     </item>
     <item>
       <title>Over mij</title>
-      <link>http://localhost:1313/about/</link>
+      <link>http://localhost:37853/about/</link>
       <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>http://localhost:37853/about/</guid>
       <description>&lt;p&gt;Welkom op mijn blog. Ik ben een Windows engineer en CSIRT
 analist uit Nederland met passie voor security.&lt;/p&gt;
 &lt;p&gt;Hier deel ik praktische kennis over Windows security en
