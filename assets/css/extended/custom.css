@@ -76,3 +76,11 @@ nav a {
 .status-dot {
     animation: pulse 2s infinite;
 }
+
+.post-single {
+    position: relative;
+    z-index: 1;
+    background: #0a0e1a;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
