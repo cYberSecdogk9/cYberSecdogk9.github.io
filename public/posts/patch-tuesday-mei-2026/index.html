@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Patch Tuesday Mei 2026 | BlogPatchInfo</title>
+<meta name="keywords" content="patch-tuesday, microsoft, cve, security, windows, azure">
+<meta name="description" content="Overzicht van alle CVE&#39;s uit de Microsoft Patch Tuesday van mei 2026, inclusief kritieke kwetsbaarheden in Azure, Windows en Office.">
+<meta name="author" content="Wingineer">
+<link rel="canonical" href="http://localhost:1313/posts/patch-tuesday-mei-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e6ad27cc43bea72158e9116070767b73bbfd43498958ee383ed71604bf19acb0.css" integrity="sha256-5q0nzEO&#43;pyFY6RFgcHZ7c7v9Q0mJWO44PtcWBL8ZrLA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/patch-tuesday-mei-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><canvas id="matrix" style="position:fixed;top:0;left:0;z-index:-1;opacity:0.15;"></canvas>
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+const chars = '01';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+    ctx.fillStyle = 'rgba(10, 14, 26, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#00ff41';
+    ctx.font = fontSize + 'px monospace';
+
+    drops.forEach((y, i) => {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * fontSize, y * fontSize);
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    });
+}
+
+setInterval(draw, 50);
+</script>
+
+<script src="/js/typewriter.js" defer></script>
+
+
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="BlogPatchInfo (Alt + H)">BlogPatchInfo</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="Over mij">
+                    <span>Over mij</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/cv/" title="CV">
+                    <span>CV</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projecten/" title="Projecten">
+                    <span>Projecten</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Patch Tuesday Mei 2026
+    </h1>
+    <div class="post-description">
+      Overzicht van alle CVE&#39;s uit de Microsoft Patch Tuesday van mei 2026, inclusief kritieke kwetsbaarheden in Azure, Windows en Office.
+    </div>
+    <div class="post-meta"><span title='2026-05-12 00:00:00 +0000 UTC'>May 12, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Wingineer</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="http://localhost:1313/images/PatchTuesday.jpg" alt="PatchTuesday">
+        
+</figure>
+  <div class="post-content md-content"><h2 id="inleiding">Inleiding<a hidden class="anchor" aria-hidden="true" href="#inleiding">#</a></h2>
+<p>Vandaag, 12 mei 2026, heeft Microsoft de maandelijkse Patch Tuesday uitgebracht. Deze maand worden er een groot aantal kwetsbaarheden gepatcht, verspreid over Windows, Azure, Microsoft Office en diverse andere producten. Hieronder vind je een volledig overzicht van alle CVE&rsquo;s.</p>
+<p>De updates zijn beschikbaar via Windows Update en het <a href="https://msrc.microsoft.com/update-guide/">Microsoft Security Update Guide</a>.</p>
+<hr>
+<h2 id="kritieke-kwetsbaarheden-score--90">Kritieke kwetsbaarheden (score ≥ 9.0)<a hidden class="anchor" aria-hidden="true" href="#kritieke-kwetsbaarheden-score--90">#</a></h2>
+<p>Onderstaande CVE&rsquo;s verdienen directe aandacht vanwege hun hoge CVSS-score.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Product</th>
+          <th>CVE</th>
+          <th>Base Score</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Azure DevOps</td>
+          <td>CVE-2026-42826</td>
+          <td><strong>10.0</strong></td>
+      </tr>
+      <tr>
+          <td>Azure Managed Instance for Apache Cassandra</td>
+          <td>CVE-2026-33109</td>
+          <td>9.9</td>
+      </tr>
+      <tr>
+          <td>Azure Logic Apps</td>
+          <td>CVE-2026-42823</td>
+          <td>9.9</td>
+      </tr>
+      <tr>
+          <td>Microsoft Dynamics 365 (on-premises)</td>
+          <td>CVE-2026-42898</td>
+          <td>9.9</td>
+      </tr>
+      <tr>
+          <td>Windows Hyper-V</td>
+          <td>CVE-2026-40402</td>
+          <td>9.3</td>
+      </tr>
+      <tr>
+          <td>Azure Entra ID</td>
+          <td>CVE-2026-40379</td>
+          <td>9.3</td>
+      </tr>
+      <tr>
+          <td>Azure SDK</td>
+          <td>CVE-2026-33117</td>
+          <td>9.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft SSO Plugin for Jira &amp; Confluence</td>
+          <td>CVE-2026-41103</td>
+          <td>9.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft Dynamics 365 (on-premises)</td>
+          <td>CVE-2026-42833</td>
+          <td>9.1</td>
+      </tr>
+      <tr>
+          <td>Azure Managed Instance for Apache Cassandra</td>
+          <td>CVE-2026-33844</td>
+          <td>9.0</td>
+      </tr>
+      <tr>
+          <td>Windows Netlogon</td>
+          <td>CVE-2026-41089</td>
+          <td>9.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Windows DNS</td>
+          <td>CVE-2026-41096</td>
+          <td>9.8</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>CVE-2026-42826</strong> (Azure DevOps) en <strong>CVE-2026-41089</strong> (Netlogon) hebben de maximale score van 9.8 of hoger — patch deze zo snel mogelijk.</p></blockquote>
+<hr>
+<h2 id="volledig-cve-overzicht">Volledig CVE-overzicht<a hidden class="anchor" aria-hidden="true" href="#volledig-cve-overzicht">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Product</th>
+          <th>CVE</th>
+          <th>Base Score</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Windows Rich Text Edit</td>
+          <td>CVE-2026-21530</td>
+          <td>6.7</td>
+      </tr>
+      <tr>
+          <td>M365 Copilot</td>
+          <td>CVE-2026-26129</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>M365 Copilot</td>
+          <td>CVE-2026-26164</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>Windows Native WiFi Miniport Driver</td>
+          <td>CVE-2026-32161</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>Windows Rich Text Edit Control</td>
+          <td>CVE-2026-32170</td>
+          <td>6.7</td>
+      </tr>
+      <tr>
+          <td>.NET</td>
+          <td>CVE-2026-32175</td>
+          <td>4.3</td>
+      </tr>
+      <tr>
+          <td>.NET</td>
+          <td>CVE-2026-32177</td>
+          <td>7.3</td>
+      </tr>
+      <tr>
+          <td>Microsoft Teams</td>
+          <td>CVE-2026-32185</td>
+          <td>5.5</td>
+      </tr>
+      <tr>
+          <td>Azure Monitor Agent</td>
+          <td>CVE-2026-32204</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Azure Machine Learning</td>
+          <td>CVE-2026-32207</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Windows Filtering Platform (WFP)</td>
+          <td>CVE-2026-32209</td>
+          <td>4.4</td>
+      </tr>
+      <tr>
+          <td>Azure Managed Instance for Apache Cassandra</td>
+          <td>CVE-2026-33109</td>
+          <td>9.9</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office SharePoint</td>
+          <td>CVE-2026-33110</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Copilot Chat (Microsoft Edge)</td>
+          <td>CVE-2026-33111</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office SharePoint</td>
+          <td>CVE-2026-33112</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Azure SDK</td>
+          <td>CVE-2026-33117</td>
+          <td>9.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft Dynamics 365 Customer Insights</td>
+          <td>CVE-2026-33821</td>
+          <td>7.7</td>
+      </tr>
+      <tr>
+          <td>Microsoft Teams</td>
+          <td>CVE-2026-33823</td>
+          <td>9.6</td>
+      </tr>
+      <tr>
+          <td>Azure Machine Learning</td>
+          <td>CVE-2026-33833</td>
+          <td>8.2</td>
+      </tr>
+      <tr>
+          <td>Windows Event Logging Service</td>
+          <td>CVE-2026-33834</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Cloud Files Mini Filter Driver</td>
+          <td>CVE-2026-33835</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-33837</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Message Queuing</td>
+          <td>CVE-2026-33838</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - GRFX</td>
+          <td>CVE-2026-33839</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - ICOMP</td>
+          <td>CVE-2026-33840</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Kernel</td>
+          <td>CVE-2026-33841</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Azure Managed Instance for Apache Cassandra</td>
+          <td>CVE-2026-33844</td>
+          <td>9.0</td>
+      </tr>
+      <tr>
+          <td>Microsoft Partner Center</td>
+          <td>CVE-2026-34327</td>
+          <td>8.2</td>
+      </tr>
+      <tr>
+          <td>Windows Message Queuing</td>
+          <td>CVE-2026-34329</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - GRFX</td>
+          <td>CVE-2026-34330</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - GRFX</td>
+          <td>CVE-2026-34331</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Kernel-Mode Drivers</td>
+          <td>CVE-2026-34332</td>
+          <td>8.0</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - GRFX</td>
+          <td>CVE-2026-34333</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-34334</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows DWM Core Library</td>
+          <td>CVE-2026-34336</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Cloud Files Mini Filter Driver</td>
+          <td>CVE-2026-34337</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Telephony Service</td>
+          <td>CVE-2026-34338</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows LDAP</td>
+          <td>CVE-2026-34339</td>
+          <td>5.5</td>
+      </tr>
+      <tr>
+          <td>Windows Projected File System</td>
+          <td>CVE-2026-34340</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Link-Layer Discovery Protocol (LLDP)</td>
+          <td>CVE-2026-34341</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Print Spooler Components</td>
+          <td>CVE-2026-34342</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Application Identity (AppID) Subsystem</td>
+          <td>CVE-2026-34343</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Ancillary Function Driver for WinSock</td>
+          <td>CVE-2026-34344</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Ancillary Function Driver for WinSock</td>
+          <td>CVE-2026-34345</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - GRFX</td>
+          <td>CVE-2026-34347</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Storport Miniport Driver</td>
+          <td>CVE-2026-34350</td>
+          <td>6.5</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-34351</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Storage Spaces Controller</td>
+          <td>CVE-2026-35415</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Ancillary Function Driver for WinSock</td>
+          <td>CVE-2026-35416</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - ICOMP</td>
+          <td>CVE-2026-35417</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Cloud Files Mini Filter Driver</td>
+          <td>CVE-2026-35418</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows DWM Core Library</td>
+          <td>CVE-2026-35419</td>
+          <td>5.5</td>
+      </tr>
+      <tr>
+          <td>Windows Kernel</td>
+          <td>CVE-2026-35420</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows GDI</td>
+          <td>CVE-2026-35421</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-35422</td>
+          <td>6.5</td>
+      </tr>
+      <tr>
+          <td>Telnet Client</td>
+          <td>CVE-2026-35423</td>
+          <td>5.4</td>
+      </tr>
+      <tr>
+          <td>Windows Internet Key Exchange (IKE) Protocol</td>
+          <td>CVE-2026-35424</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>Azure Cloud Shell</td>
+          <td>CVE-2026-35428</td>
+          <td>9.6</td>
+      </tr>
+      <tr>
+          <td>Microsoft Edge for Android</td>
+          <td>CVE-2026-35429</td>
+          <td>4.3</td>
+      </tr>
+      <tr>
+          <td>.NET</td>
+          <td>CVE-2026-35433</td>
+          <td>7.3</td>
+      </tr>
+      <tr>
+          <td>Azure AI Foundry M365 published agents</td>
+          <td>CVE-2026-35435</td>
+          <td>8.6</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Click-To-Run</td>
+          <td>CVE-2026-35436</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Windows Admin Center</td>
+          <td>CVE-2026-35438</td>
+          <td>8.3</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office SharePoint</td>
+          <td>CVE-2026-35439</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-35440</td>
+          <td>5.5</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office SharePoint</td>
+          <td>CVE-2026-40357</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office</td>
+          <td>CVE-2026-40358</td>
+          <td>8.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Excel</td>
+          <td>CVE-2026-40359</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Excel</td>
+          <td>CVE-2026-40360</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-40361</td>
+          <td>8.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Excel</td>
+          <td>CVE-2026-40362</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office</td>
+          <td>CVE-2026-40363</td>
+          <td>8.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-40364</td>
+          <td>8.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office SharePoint</td>
+          <td>CVE-2026-40365</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-40366</td>
+          <td>8.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-40367</td>
+          <td>8.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office SharePoint</td>
+          <td>CVE-2026-40368</td>
+          <td>8.0</td>
+      </tr>
+      <tr>
+          <td>Windows Kernel</td>
+          <td>CVE-2026-40369</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>SQL Server</td>
+          <td>CVE-2026-40370</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Power Automate</td>
+          <td>CVE-2026-40374</td>
+          <td>6.5</td>
+      </tr>
+      <tr>
+          <td>Windows Cryptographic Services</td>
+          <td>CVE-2026-40377</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Azure Entra ID</td>
+          <td>CVE-2026-40379</td>
+          <td>9.3</td>
+      </tr>
+      <tr>
+          <td>Windows Volume Manager Extension Driver</td>
+          <td>CVE-2026-40380</td>
+          <td>6.2</td>
+      </tr>
+      <tr>
+          <td>Azure Connected Machine Agent</td>
+          <td>CVE-2026-40381</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Telephony Service</td>
+          <td>CVE-2026-40382</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Common Log File System Driver</td>
+          <td>CVE-2026-40397</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Remote Desktop</td>
+          <td>CVE-2026-40398</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40399</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40401</td>
+          <td>7.1</td>
+      </tr>
+      <tr>
+          <td>Windows Hyper-V</td>
+          <td>CVE-2026-40402</td>
+          <td>9.3</td>
+      </tr>
+      <tr>
+          <td>Windows Win32K - GRFX</td>
+          <td>CVE-2026-40403</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40405</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40406</td>
+          <td>7.5</td>
+      </tr>
+      <tr>
+          <td>Windows Common Log File System Driver</td>
+          <td>CVE-2026-40407</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Kernel-Mode Drivers</td>
+          <td>CVE-2026-40408</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows SMB Client</td>
+          <td>CVE-2026-40410</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40413</td>
+          <td>7.4</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40414</td>
+          <td>7.4</td>
+      </tr>
+      <tr>
+          <td>Windows TCP/IP</td>
+          <td>CVE-2026-40415</td>
+          <td>8.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft Edge (Chromium-based)</td>
+          <td>CVE-2026-40416</td>
+          <td>4.3</td>
+      </tr>
+      <tr>
+          <td>Dynamics Business Central</td>
+          <td>CVE-2026-40417</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Click-To-Run</td>
+          <td>CVE-2026-40418</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office</td>
+          <td>CVE-2026-40419</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Click-To-Run</td>
+          <td>CVE-2026-40420</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-40421</td>
+          <td>4.3</td>
+      </tr>
+      <tr>
+          <td>Windows Admin Center</td>
+          <td>CVE-2026-41086</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Windows Ancillary Function Driver for WinSock</td>
+          <td>CVE-2026-41088</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Windows Netlogon</td>
+          <td>CVE-2026-41089</td>
+          <td>9.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Data Formulator</td>
+          <td>CVE-2026-41094</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Data Deduplication</td>
+          <td>CVE-2026-41095</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Windows DNS</td>
+          <td>CVE-2026-41096</td>
+          <td>9.8</td>
+      </tr>
+      <tr>
+          <td>Windows Secure Boot</td>
+          <td>CVE-2026-41097</td>
+          <td>6.7</td>
+      </tr>
+      <tr>
+          <td>M365 Copilot</td>
+          <td>CVE-2026-41100</td>
+          <td>4.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office Word</td>
+          <td>CVE-2026-41101</td>
+          <td>7.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office PowerPoint</td>
+          <td>CVE-2026-41102</td>
+          <td>7.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft SSO Plugin for Jira &amp; Confluence</td>
+          <td>CVE-2026-41103</td>
+          <td>9.1</td>
+      </tr>
+      <tr>
+          <td>Azure Notification Service</td>
+          <td>CVE-2026-41105</td>
+          <td>8.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft Edge (Chromium-based)</td>
+          <td>CVE-2026-41107</td>
+          <td>7.4</td>
+      </tr>
+      <tr>
+          <td>GitHub Copilot and Visual Studio</td>
+          <td>CVE-2026-41109</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>Visual Studio Code</td>
+          <td>CVE-2026-41610</td>
+          <td>6.3</td>
+      </tr>
+      <tr>
+          <td>Visual Studio Code</td>
+          <td>CVE-2026-41611</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Visual Studio Code</td>
+          <td>CVE-2026-41612</td>
+          <td>5.5</td>
+      </tr>
+      <tr>
+          <td>Visual Studio Code</td>
+          <td>CVE-2026-41613</td>
+          <td>8.8</td>
+      </tr>
+      <tr>
+          <td>M365 Copilot for Desktop</td>
+          <td>CVE-2026-41614</td>
+          <td>6.2</td>
+      </tr>
+      <tr>
+          <td>Azure Logic Apps</td>
+          <td>CVE-2026-42823</td>
+          <td>9.9</td>
+      </tr>
+      <tr>
+          <td>Windows Telephony Service</td>
+          <td>CVE-2026-42825</td>
+          <td>7.0</td>
+      </tr>
+      <tr>
+          <td>Azure DevOps</td>
+          <td>CVE-2026-42826</td>
+          <td><strong>10.0</strong></td>
+      </tr>
+      <tr>
+          <td>Azure Monitor Agent</td>
+          <td>CVE-2026-42830</td>
+          <td>6.5</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office</td>
+          <td>CVE-2026-42831</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Office</td>
+          <td>CVE-2026-42832</td>
+          <td>7.7</td>
+      </tr>
+      <tr>
+          <td>Microsoft Dynamics 365 (on-premises)</td>
+          <td>CVE-2026-42833</td>
+          <td>9.1</td>
+      </tr>
+      <tr>
+          <td>Microsoft Edge (Chromium-based)</td>
+          <td>CVE-2026-42838</td>
+          <td>5.4</td>
+      </tr>
+      <tr>
+          <td>Microsoft Edge (Chromium-based)</td>
+          <td>CVE-2026-42891</td>
+          <td>6.5</td>
+      </tr>
+      <tr>
+          <td>M365 Copilot</td>
+          <td>CVE-2026-42893</td>
+          <td>7.4</td>
+      </tr>
+      <tr>
+          <td>Windows DWM Core Library</td>
+          <td>CVE-2026-42896</td>
+          <td>7.8</td>
+      </tr>
+      <tr>
+          <td>Microsoft Dynamics 365 (on-premises)</td>
+          <td>CVE-2026-42898</td>
+          <td>9.9</td>
+      </tr>
+      <tr>
+          <td>ASP.NET Core</td>
+          <td>CVE-2026-42899</td>
+          <td>7.5</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="aanbevelingen">Aanbevelingen<a hidden class="anchor" aria-hidden="true" href="#aanbevelingen">#</a></h2>
+<ul>
+<li>Installeer de updates zo snel mogelijk via <strong>Windows Update</strong> of <strong>WSUS/SCCM</strong>.</li>
+<li>Prioriteer systemen met Azure DevOps, Netlogon, Windows DNS en Hyper-V.</li>
+<li>Controleer of je SharePoint-omgeving up-to-date is — meerdere kritieke CVE&rsquo;s raken SharePoint.</li>
+<li>Bekijk de volledige details per CVE via het <a href="https://msrc.microsoft.com/update-guide/">Microsoft Security Update Guide</a>.</li>
+</ul>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/patch-tuesday/">Patch-Tuesday</a></li>
+      <li><a href="http://localhost:1313/tags/microsoft/">Microsoft</a></li>
+      <li><a href="http://localhost:1313/tags/cve/">Cve</a></li>
+      <li><a href="http://localhost:1313/tags/security/">Security</a></li>
+      <li><a href="http://localhost:1313/tags/windows/">Windows</a></li>
+      <li><a href="http://localhost:1313/tags/azure/">Azure</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/copy-fail-cve-2026-31431/">
+    <span class="title">Next »</span>
+    <span>&#34;Copy Fail&#34; — CVE-2026-31431: Elke lokale gebruiker krijgt root op Linux</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div style="text-align:center; margin: 2rem 0; padding: 1rem; border-top: 0.5px solid #1e3a5f;">
+  <p style="color:#6e7681; font-size:13px; margin-bottom:0.5rem;">Vragen of samenwerking?</p>
+  <a href="mailto:cYberSecdogk9@protonmail.com" style="color:#00ff41; font-family:'Courier New',monospace; font-size:13px;">cYberSecdogk9@protonmail.com</a>
+</div>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
