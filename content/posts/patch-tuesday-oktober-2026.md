@@ -5,6 +5,8 @@ draft = false
 author = "Wingineer"
 tags = ["patch-tuesday", "microsoft", "cve", "security", "windows", "office", "exchange"]
 categories = ["Patch Tuesday", "Security"]
+cover.image = "images/PatchTuesday.jpg"
+cover.alt = "PatchTuesday"
 description = "Microsoft patchte op 14 oktober 2026 in totaal 1407 kwetsbaarheden, waarvan 66 met de classificatie Critical. Grote aantallen RCE's in Windows, Office/365 en Exchange Server."
 summary = "Oktober 2026 Patch Tuesday: 1407 CVE's (66 Critical, 1334 Important). Zware maand voor Windows, Office/365 en Exchange Server. Overzicht van alle kritieke kwetsbaarheden."
 +++
